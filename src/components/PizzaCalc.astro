@@ -1,0 +1,55 @@
+<script is:inline>
+	const input = document.querySelector("input");
+		
+	input.addEventListener("keyup", (event) => {
+
+		if (event.key === "Enter") {
+        	pizzaCalc();
+		}
+	});
+	
+	function pizzaCalc(){
+		let pizze = parseInt(document.getElementById('count').value);
+		if (pizze > 0) {
+		
+			let plural = "pizzaer";
+			if (pizze === 1) {
+				plural = "pizza";
+			}
+			
+			let water = pizze * 100;
+			
+			let doughWater = water * 70 / 100;
+			let doughFlour = doughWater * 100 / 56;
+			let doughPoolish = doughFlour * 48 / 100;
+			let doughSalt = doughFlour * 3 / 100;
+			let doughWeight = doughWater + doughFlour + doughSalt;
+				
+			let poolishFlour = doughPoolish / 2;
+			let poolishWater = poolishFlour;
+			let poolishYeast = poolishFlour * 2 / 100;
+			let poolishHoney = poolishFlour * 2 / 100;
+			let poolishWeight = poolishFlour + poolishWater + poolishYeast + poolishHoney;
+			
+			let flour = doughFlour + poolishFlour;
+			let totalWeight = parseInt(doughWeight + poolishWeight);
+			let hydration = parseInt(((poolishWater + doughWater) / flour) * 100);
+			
+			document.getElementById('ingredients').innerHTML = `Til ${pizze} ${plural} skal du bruge:`;
+			document.getElementById('poolishFlour').innerHTML = poolishFlour;
+			document.getElementById('poolishWater').innerHTML = poolishWater;
+			document.getElementById('poolishYeast').innerHTML = poolishYeast;
+			document.getElementById('poolishHoney').innerHTML = poolishHoney;
+			
+			document.getElementById('doughFlour').innerHTML = doughFlour;
+			document.getElementById('doughWater').innerHTML = doughWater;
+			document.getElementById('doughSalt').innerHTML = doughSalt;
+			
+			document.getElementById('flourContent').innerHTML = `Check at du har mel nok - der skal bruges ${flour} g. Dejens vægt er ~${totalWeight} g og dens hydration er ~${hydration}%`
+
+			// Clear input field
+			input.value = "";
+	
+		}
+	}
+</script>

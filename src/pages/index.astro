@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Card from "../components/Card.astro";
+
+const title = "Klar, parat, bag!";
+---
+
+<BaseLayout title={title}>
+
+    <main class="not-prose">
+        <ul class="md:grid md:grid-cols-2 md:gap-8">
+            <Card
+                heading="Brød"
+                subheading="Hvor meget mel vil du have i dit brød? Og hvilken hydration?"
+                body="Angiv de to parametre og se mængder på ingredienser og dejens totalvægt."
+                href="/bread/"
+            />
+            <Card
+                heading="Pizza"
+                subheading="Hvor mange pizzaer skal du lave?"
+                body="Fortæl hvor mange pizzaer du skal lave og få ingredienslisten."
+                href="/pizza/"
+            />
+        </ul>
+    </main>
+
+</BaseLayout>

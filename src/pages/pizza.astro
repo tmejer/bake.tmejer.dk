@@ -1,0 +1,74 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PizzaCalc from "../components/PizzaCalc.astro";
+
+const title = "Pizza"
+---
+
+<BaseLayout title={title}>
+	<h1>Pizza</h1>
+    <p>Hvor mange pizzaer vil du lave?</p>
+
+	<form onsubmit="event.preventDefault();">
+        <input type="number" id="count"  placeholder="1, 2, 3 eller flere?" required>
+    </form>
+
+
+	<h2 id="ingredients">Ingredienser:</h2>
+
+	<div class="flex flex-col gap-4 md:flex-row md:gap-24">
+		<div>
+			<p><strong>Poolish (fordej)</strong></p>
+			<ul>
+				<li><span id="poolishFlour">-</span> g tipo 00 mel</li>
+				<li><span id="poolishWater">-</span> g vand</li>
+				<li><span id="poolishYeast">-</span> g tørgær<br />(dobbelt op hvis der bruges frisk gær)</li>
+				<li><span id="poolishHoney">-</span> g honning</li>
+			</ul>
+		</div>
+		<div>
+		<p><strong>Pizzadej</strong></p>
+		<ul>
+		<li>Fordejen</li>
+			<li><span id="doughFlour">-</span> g tipo 00 mel</li>
+			<li><span id="doughWater">-</span> g vand</li>
+			<li><span id="doughSalt">-</span> g salt</li>
+		</ul>
+		</div>
+	</div>
+
+	<p id="flourContent" class="my-8"></p>
+
+	<hr class="my-8 border-1 border-slate-300" />
+
+	<p>
+		<a href="https://www.youtube.com/watch?v=G-jPoROGHGE">Se hvordan dejen laves og pizzaerne formes her &rarr;</a>
+	</p>
+
+	<h3>Poolish</h3>
+	<p>Bland vand, gær og honing. Bland så melet i.<br/>
+	Lad stå 1 time ved stuetemperatur, derefter 16-24 timer på køl</p>
+	<h3>Pizzadej</h3>
+	<p>Bland fordejen i vandet.<br />
+	Rør halvdelen af melet i.<br />
+	Tilføj så salt og resten af melet.</p>
+
+	<p>Bland til al væsken er optaget i melet.<br />
+	Hæld dejen ud på bord og ælt til den er samlet, men stadig klistret</p>
+	
+	<p>Dæk dejen til og vent i 15 min.</p>
+	
+	<p>Kom lidt olivenolie på hænderne og 'rul' først dejen, derefter laves løft og fold, mens det sikres at den del af dejen der er øverst forbliver øverst.<br />
+Fortsæt til dejen er blød og elastisk og ikke klistret.</p>
+	
+	<p>Kom lidt olivenolie i dejskålen.<br />
+	Læg dejen i skålen, stadig med samme side op.<br />
+	Dæk skålen til og lad dejen hvile i 30 min.</p>
+	
+	<p>Herfter formes pizzaboller.</p>
+
+	<p>Kom lidt semulinamel på et fad, læg pizzabollerne med 3 fingres afstand, kom lidt olivenolie på toppen af bollerne. Fadet filmes.</p>
+	<p>Lad dem hæve i 2 timer ved stuetemperatur. Bollerne skal være vokset sammen, så er de klar til at blive lavet til pizzaer.</p>
+
+	<PizzaCalc />
+</BaseLayout>

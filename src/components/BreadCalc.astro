@@ -1,0 +1,33 @@
+<script is:inline>
+    const input = document.querySelectorAll("input");
+    for (let i = 0; i < input.length; i++) {
+        input[i].addEventListener("keyup", (event) => {
+            if (event.key === "Enter") {
+            recipe();
+            }
+        });
+    }
+
+    function recipe() {
+        // get values from form
+        let flour = parseInt(document.getElementById('flour').value);
+        let hydration = parseInt(document.getElementById('hydration').value);
+
+        // check we got some numbers
+        if (flour > 0 && hydration > 0) {
+            // calculate recipe
+            let salt = (flour * 3) / 100; // 3% salt
+            let sourdough = (flour * 30) / 100; // 30% sourdough
+            let water = ((sourdough / 2) + flour) * (hydration / 100) - (sourdough / 2);
+
+            let totalWeight = flour + water + salt + sourdough;
+
+            // insert data in HTML
+            document.getElementById('doughFlour').innerHTML = flour;
+            document.getElementById('water').innerHTML = water;
+            document.getElementById('sourdough').innerHTML = sourdough;
+            document.getElementById('salt').innerHTML = salt;
+            document.getElementById('totalWeight').innerHTML = totalWeight;
+        };
+    }
+</script>
