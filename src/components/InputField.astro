@@ -1,0 +1,8 @@
+---
+const {id, label, type, value, placeholder, autofocus, required} = Astro.props;
+---
+
+<label for={id} class="block mb-4">
+    <span class="block pb-2">{label}</span>
+    <input type={type} id={id} value={value} placeholder={placeholder} {autofocus} {required} />
+</label>

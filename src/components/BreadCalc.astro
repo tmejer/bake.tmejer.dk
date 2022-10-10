@@ -1,33 +1,43 @@
 <script is:inline>
+    // Enter submitter form
     const input = document.querySelectorAll("input");
     for (let i = 0; i < input.length; i++) {
         input[i].addEventListener("keyup", (event) => {
             if (event.key === "Enter") {
-            recipe();
+                recipe();
             }
         });
     }
-
+    
     function recipe() {
-        // get values from form
+        // Få værdier fra form
         let flour = parseInt(document.getElementById('flour').value);
         let hydration = parseInt(document.getElementById('hydration').value);
 
-        // check we got some numbers
-        if (flour > 0 && hydration > 0) {
-            // calculate recipe
-            let salt = (flour * 3) / 100; // 3% salt
-            let sourdough = (flour * 30) / 100; // 30% sourdough
-            let water = ((sourdough / 2) + flour) * (hydration / 100) - (sourdough / 2);
+        if(flour > 0 && hydration > 0) {
+            // Beregn mængder
+            let saltPercentage = 3;
+            let starterPercentage = 25;
+            let sourdough = Math.round(flour * starterPercentage / 100);
+            let starterIngredients = sourdough / 2;
 
-            let totalWeight = flour + water + salt + sourdough;
+            let totalFlour = flour + starterIngredients;
 
-            // insert data in HTML
-            document.getElementById('doughFlour').innerHTML = flour;
-            document.getElementById('water').innerHTML = water;
-            document.getElementById('sourdough').innerHTML = sourdough;
-            document.getElementById('salt').innerHTML = salt;
-            document.getElementById('totalWeight').innerHTML = totalWeight;
-        };
+            let water = Math.round((totalFlour * hydration / 100) - starterIngredients);
+            let salt = Math.round(totalFlour * saltPercentage / 100);
+            
+            let weight = flour + water + sourdough + salt;
+
+            document.getElementById('recipe').innerHTML = `
+                <h4>Ingredienser</h4>
+                <ul>
+                    <li>Mel: ${flour} g</li>
+                    <li>Vand: ${water} g</li>
+                    <li>Surdej (25%): ${sourdough} g</li>
+                    <li>Salt (3%): ${salt} g </li>
+                </ul>
+                <p>Dejens vægt er ${weight} g</p>
+            `
+        }
     }
 </script>

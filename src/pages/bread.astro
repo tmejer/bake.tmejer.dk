@@ -1,31 +1,36 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BreadCalc from "../components/BreadCalc.astro";
+import InputField from "../components/InputField.astro";
+import Button from "../components/Button.astro";
 
-const title = "Brød";
+const title = "Bread calculator";
 ---
 
 <BaseLayout title={title}>
-    <h1>Brød</h1>
-    <p>Hvor stor et brød vil du slå op?</p>
-
-    <form onsubmit="event.preventDefault();" class="md:flex md:gap-4 md:items-end">
-        <label for="flour" class="block">Hvor meget mel?<br />
-            <input type="number" id="flour" class="my-2" placeholder="Angiv i gram" required>
-        </label>
-        <label for="hydration" class="block">Hvilken hydration?<br />
-            <input type="number" id="hydration" class="my-2" placeholder="Angiv i procent" required>
-        </label>
+    <form onsubmit="event.preventDefault();">
+        <InputField
+            id="flour"
+            label="Hvor stort et brød vil du slå op?"
+            type="number"
+            placeholder="Hvor mange g mel?"
+            autofocus="autofocus"
+            required="required"
+        />
+        <InputField
+            id="hydration"
+            label="Hydation"
+            placeholder="Hvor mange % vand?"
+            type="number"
+            required="required"
+        />
+        <Button
+            type="submit"
+            onClickJs="recipe()"
+            content="Få opskrift"
+        />
     </form>
-    
-    <h3>Opskrift</h3>
-    <ul>
-        <li>Mel: <span id="doughFlour">-</span> g</li>
-        <li>Vand: <span id="water">-</span> g</li>
-        <li>Surdej (30%): <span id="sourdough">-</span> g</li>
-        <li>Salt (3%): <span id="salt">-</span> g</li>
-    </ul>
-    <p>Dejens vægt: <span id="totalWeight">-</span> g</p>
+    <div id="recipe" class="prose"></div>
 
     <BreadCalc />
 </BaseLayout>
